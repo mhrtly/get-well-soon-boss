@@ -54,6 +54,33 @@
     "thumb": "thumbs/houston.jpg"
   },
   {
+    "id": "thrillhill",
+    "title": "Thrill Hill Vault 1976–1978",
+    "year": 1978,
+    "kind": "concert",
+    "runtime": "12 clips · about 1 h",
+    "era": "Darkness era",
+    "tags": [
+      "Rare footage"
+    ],
+    "note": "Footage from Bruce’s own archive, shot in the restless stretch between Born to Run and Darkness: the band working up songs at his Holmdel farmhouse in 1976, session footage from New York in 1978, and a ferocious run of songs from Phoenix ’78. Songs like “Save My Love” and “Ain’t Good Enough for You” had never been officially released until this film came out in The Promise box set in 2010. The Phoenix “Rosalita,” Clarence at his side, is the E Street Band at full roar.",
+    "caveat": "Twelve separate videos in an official playlist. 1970s film and video, so not HD.",
+    "links": [
+      {
+        "label": "YouTube · Official playlist",
+        "url": "https://www.youtube.com/playlist?list=PLJ3gKh8Ty5pYQCHvJ35SlxjeHgLlrr65s",
+        "access": "Free"
+      },
+      {
+        "label": "YouTube · Rosalita, Phoenix ’78",
+        "url": "https://www.youtube.com/watch?v=jlsBJxH1CWg",
+        "access": "Free"
+      }
+    ],
+    "also": [],
+    "thumb": "thumbs/thrillhill.jpg"
+  },
+  {
     "id": "nonukes",
     "title": "The Legendary 1979 No Nukes Concerts",
     "year": 1979,
@@ -427,25 +454,6 @@
     "thumb": "thumbs/promise.jpg"
   },
   {
-    "id": "springsteeni",
-    "title": "Springsteen & I",
-    "year": 2013,
-    "kind": "film",
-    "runtime": "1 h 17 min",
-    "era": "",
-    "tags": [
-      "Fan film",
-      "Documentary"
-    ],
-    "note": "Less a portrait of Bruce than of what he means to people, made from videos sent in by fans around the world. It’s sentimental by design. Anyone who has felt personally addressed by a Springsteen song will recognise themselves in it.",
-    "caveat": "",
-    "links": [],
-    "also": [
-      "Rent or buy on Amazon"
-    ],
-    "thumb": "thumbs/springsteeni.jpg"
-  },
-  {
     "id": "bitusa13",
     "title": "Born in the U.S.A. Live: London 2013",
     "year": 2013,
@@ -466,6 +474,25 @@
     ],
     "also": [],
     "thumb": "thumbs/bitusa13.jpg"
+  },
+  {
+    "id": "springsteeni",
+    "title": "Springsteen & I",
+    "year": 2013,
+    "kind": "film",
+    "runtime": "1 h 17 min",
+    "era": "",
+    "tags": [
+      "Fan film",
+      "Documentary"
+    ],
+    "note": "Less a portrait of Bruce than of what he means to people, made from videos sent in by fans around the world. It’s sentimental by design. Anyone who has felt personally addressed by a Springsteen song will recognise themselves in it.",
+    "caveat": "",
+    "links": [],
+    "also": [
+      "Rent or buy on Amazon"
+    ],
+    "thumb": "thumbs/springsteeni.jpg"
   },
   {
     "id": "ownwords",
@@ -508,24 +535,6 @@
     "thumb": "thumbs/broadway.jpg"
   },
   {
-    "id": "westernstars",
-    "title": "Western Stars",
-    "year": 2019,
-    "kind": "film",
-    "runtime": "1 h 23 min",
-    "era": "Late period",
-    "tags": [
-      "Concert film"
-    ],
-    "note": "His lush, orchestral album of Western Americana, inspired by the Southern California pop of the late ’60s and early ’70s, performed with a band and strings in his century-old barn. Spoken interludes about love, restlessness and settling down tie it together. Co-directed by Bruce, it’s one of his most reflective late works.",
-    "caveat": "",
-    "links": [],
-    "also": [
-      "Rent or buy on Amazon, Apple and Fandango at Home"
-    ],
-    "thumb": "thumbs/westernstars.jpg"
-  },
-  {
     "id": "asbury",
     "title": "Asbury Park: Riot, Redemption, Rock & Roll",
     "year": 2019,
@@ -542,6 +551,24 @@
       "Rent or buy on Amazon and Apple"
     ],
     "thumb": "thumbs/asbury.jpg"
+  },
+  {
+    "id": "westernstars",
+    "title": "Western Stars",
+    "year": 2019,
+    "kind": "film",
+    "runtime": "1 h 23 min",
+    "era": "Late period",
+    "tags": [
+      "Concert film"
+    ],
+    "note": "His lush, orchestral album of Western Americana, inspired by the Southern California pop of the late ’60s and early ’70s, performed with a band and strings in his century-old barn. Spoken interludes about love, restlessness and settling down tie it together. Co-directed by Bruce, it’s one of his most reflective late works.",
+    "caveat": "",
+    "links": [],
+    "also": [
+      "Rent or buy on Amazon, Apple and Fandango at Home"
+    ],
+    "thumb": "thumbs/westernstars.jpg"
   },
   {
     "id": "lettertoyou",
@@ -584,6 +611,28 @@
     ],
     "also": [],
     "thumb": "thumbs/roaddiary.jpg"
+  },
+  {
+    "id": "manchester25",
+    "title": "Land of Hope & Dreams Tour: Manchester 2025",
+    "year": 2025,
+    "kind": "concert",
+    "runtime": "31 min",
+    "era": "Late period",
+    "tags": [
+      "Live selections"
+    ],
+    "note": "Opening night of the Land of Hope & Dreams Tour at Co-op Live in Manchester, May 14, 2025, where Bruce prefaced songs with blunt statements about the state of American democracy. The speeches made headlines around the world and came out a week later on the Land of Hope & Dreams EP. This official selection keeps the words alongside the music: the E Street Band as a protest act, fifty years in.",
+    "caveat": "A 31-minute selection, not the full show.",
+    "links": [
+      {
+        "label": "YouTube",
+        "url": "https://www.youtube.com/watch?v=dITxyRDsF1Y",
+        "access": "Free"
+      }
+    ],
+    "also": [],
+    "thumb": "thumbs/manchester25.jpg"
   },
   {
     "id": "nebraska",
