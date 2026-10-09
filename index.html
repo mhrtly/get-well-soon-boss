@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Get Well Soon, Boss</title>
+<meta name="description" content="A small library of Bruce Springsteen concerts and films.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,300;0,400;0,500;1,300;1,500&family=Courier+Prime:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#fff; --ink:#111; --soft:#5d5d5d; --faint:#9a9a9a; --rule:#e6e6e6;
+  --teal:#1b9aa0;            /* The River */
+  --sepia:#a8835a;           /* Wild & Innocent */
+  --caps:"Work Sans","Helvetica Neue",Helvetica,Arial,sans-serif;     /* Born to Run */
+  --type:"Courier Prime","American Typewriter","Courier New",Courier,monospace;  /* Darkness */
+  --read:"Newsreader","Iowan Old Style",Georgia,serif;
+  --postcard:linear-gradient(90deg,#e8412c,#f39a1f,#f5d327,#3cb371,#2a9fd6,#7b4bb3);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--white);color:var(--ink);font:300 15px/1.6 var(--caps);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,56px)}
+.caps{text-transform:uppercase;letter-spacing:.2em;font-weight:300}
+
+/* masthead: Born to Run */
+header{padding:clamp(64px,11vw,140px) 0 clamp(40px,6vw,72px);text-align:right}
+h1{margin:0;font:200 clamp(38px,8.6vw,108px)/.98 var(--caps);text-transform:uppercase;letter-spacing:.06em}
+h1 span{display:block}
+.sub{margin:clamp(18px,2.5vw,28px) 0 0;font:300 clamp(12px,1.3vw,15px)/1.6 var(--caps);text-transform:uppercase;letter-spacing:.22em;color:var(--ink)}
+.sub i{font-style:italic;font-weight:300;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.card-rule{height:2px;width:72px;margin:22px 0 0 auto;background:var(--postcard);opacity:.9}
+
+/* browse bar */
+.bar{border-top:1px solid var(--ink);padding:16px 0 0;display:flex;flex-wrap:wrap;gap:12px 30px;align-items:center;justify-content:space-between}
+.group{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.tbtn{appearance:none;background:none;border:0;padding:6px 0;margin:0;cursor:pointer;color:var(--faint);
+  font:300 12px/1 var(--caps);letter-spacing:.24em;text-transform:uppercase;border-bottom:1px solid transparent;min-height:34px}
+.tbtn:hover{color:var(--ink)}
+.tbtn[aria-pressed=true]{color:var(--ink);font-weight:400;border-bottom-color:var(--ink)}
+#freeBtn[aria-pressed=true]{color:var(--teal);border-bottom-color:var(--teal)}
+.search{appearance:none;border:0;border-bottom:1px solid var(--rule);background:transparent;color:var(--ink);border-radius:0;
+  font:300 12px var(--caps);letter-spacing:.2em;text-transform:uppercase;padding:8px 0;width:min(200px,44vw)}
+.search:focus{outline:none;border-bottom-color:var(--ink)}
+.search::placeholder{color:var(--faint)}
+.tags{display:grid;grid-template-columns:80px 1fr;gap:6px 0;padding:18px 0 0;border-bottom:1px solid var(--rule);padding-bottom:16px}
+.tags .lbl{font:400 10px/26px var(--caps);letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+.tags .row{display:flex;flex-wrap:wrap;gap:0 18px}
+.tag{appearance:none;background:none;border:0;padding:0;cursor:pointer;color:var(--soft);font:300 11.5px/26px var(--caps);letter-spacing:.16em;text-transform:uppercase}
+.tag:hover{color:var(--ink)}
+.tag[aria-pressed=true]{color:var(--ink);font-weight:500;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+.status{font:400 12px var(--type);color:var(--faint);padding:20px 0 0}
+
+/* grid */
+.grid{list-style:none;margin:0;padding:26px 0 0;display:grid;gap:clamp(34px,4.5vw,56px) clamp(16px,2.4vw,32px);grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:720px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile{appearance:none;background:none;border:0;padding:0;margin:0;text-align:left;cursor:pointer;color:inherit;width:100%;display:block}
+.frame{position:relative;aspect-ratio:16/9;overflow:hidden;background:#f2f2f2}
+.frame img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.15);transition:filter .4s, transform .7s}
+.tile:hover .frame img,.tile:focus-visible .frame img{filter:none;transform:scale(1.025)}
+.tile:focus-visible{outline:1px solid var(--ink);outline-offset:6px}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:12px 14px;background:#fff;border:1px solid var(--ink)}
+.ph b{font:200 clamp(13px,1.4vw,17px)/1.15 var(--caps);text-transform:uppercase;letter-spacing:.12em}
+.ph small{font:400 11px var(--type);color:var(--soft);margin-top:6px}
+.t-meta{display:flex;justify-content:space-between;gap:10px;margin-top:12px;font:400 12px/1.4 var(--type);color:var(--soft)}
+.t-meta .free{color:var(--teal)}
+.t-title{font:300 clamp(12px,1.15vw,14px)/1.45 var(--caps);text-transform:uppercase;letter-spacing:.14em;margin:6px 0 0}
+.t-era{font:300 10.5px/1.4 var(--caps);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:6px}
+.empty{grid-column:1/-1;font:300 13px var(--caps);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);padding:40px 0}
+
+footer{margin-top:clamp(80px,11vw,140px);border-top:1px solid var(--ink);padding:20px 0 64px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 30px;
+  font:300 11px/1.8 var(--caps);letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
+footer .q{font:italic 400 15px var(--read);letter-spacing:0;text-transform:none;color:var(--ink)}
+
+/* detail */
+dialog{border:0;padding:0;margin:auto;width:min(780px,100vw - 24px);max-height:calc(100dvh - 24px);background:#fff;color:var(--ink);
+  box-shadow:0 0 0 1px var(--ink),0 40px 90px rgba(0,0,0,.25);overflow:auto}
+dialog::backdrop{background:rgba(255,255,255,.86);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+dialog[open]{animation:rise .28s ease}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.d-img{aspect-ratio:16/9;background:#111;position:relative;overflow:hidden}
+.d-img img{width:100%;height:100%;object-fit:cover;display:block}
+.d-img .ph{border:0}
+.d-over{position:absolute;left:0;right:0;top:0;padding:16px 20px;color:#fff;display:none;
+  font:200 clamp(18px,3.4vw,30px)/1.05 var(--caps);text-transform:uppercase;letter-spacing:.06em;text-shadow:0 1px 14px rgba(0,0,0,.35)}
+.d-body{padding:clamp(22px,4.4vw,44px)}
+.d-kicker{font:400 12.5px/1 var(--type);color:var(--soft)}
+.d-title{font:200 clamp(26px,4.4vw,42px)/1.08 var(--caps);text-transform:uppercase;letter-spacing:.06em;margin:14px 0 12px}
+.d-tags{font:300 11px/1.6 var(--caps);letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.d-note{font:400 clamp(17px,1.9vw,19px)/1.62 var(--read);margin:24px 0 0;max-width:60ch}
+.d-h{font:400 10.5px/1 var(--caps);letter-spacing:.28em;text-transform:uppercase;color:var(--ink);margin:34px 0 8px}
+.watch{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.watch li{border-bottom:1px solid var(--rule)}
+.watch a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;min-height:52px;text-decoration:none;
+  font:300 13px var(--caps);letter-spacing:.16em;text-transform:uppercase}
+.watch a:hover .w-name{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+.w-name:after{content:"  ↗";color:var(--faint)}
+.w-acc{font:400 12px var(--type);color:var(--soft);letter-spacing:0;text-transform:none}
+.w-acc.free{color:var(--teal)}
+.watch .txt{padding:14px 0;color:var(--soft);font:400 13px var(--type)}
+.caveat{font:italic 400 13px/1.5 var(--type);color:var(--soft);margin:14px 0 0}
+.close{position:absolute;top:10px;right:10px;width:44px;height:44px;border:0;cursor:pointer;background:#fff;color:var(--ink);
+  font:200 28px/1 var(--caps);display:grid;place-items:center;z-index:2}
+.close:focus-visible,.nav button:focus-visible{outline:1px solid var(--ink);outline-offset:3px}
+.nav{display:flex;justify-content:space-between;border-top:1px solid var(--rule);margin-top:36px;padding-top:12px}
+.nav button{appearance:none;background:none;border:0;cursor:pointer;color:var(--soft);font:300 11px var(--caps);letter-spacing:.22em;text-transform:uppercase;padding:8px 0;min-height:44px}
+.nav button:hover{color:var(--ink)}
+
+/* era accents (detail view only) */
+.era-darkness .d-title{font:400 clamp(26px,4.2vw,40px)/1.12 var(--type);text-transform:none;letter-spacing:0}
+.era-river .d-title{font:italic 500 clamp(26px,4.4vw,42px)/1.05 var(--caps);color:var(--teal);letter-spacing:.04em}
+.era-river .d-tags{color:var(--teal)}
+.era-btr .d-img img{filter:sepia(.75) saturate(.8) contrast(1.05) brightness(.9)}
+.era-btr .d-over{display:block}
+.era-btr .d-title{display:none}
+.era-btr .d-kicker{margin-bottom:14px}
+.era-shore .d-title{background:var(--postcard) left bottom/100% 2px no-repeat;padding-bottom:10px;display:inline-block}
+@media (max-width:720px){
+  .tags{grid-template-columns:68px 1fr}
+  .tags .lbl{letter-spacing:.16em}
+  .tags .row{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-mask:linear-gradient(90deg,#000 85%,transparent)}
+  .tags .row::-webkit-scrollbar{display:none}
+  .tag{white-space:nowrap}
+  .t-era .fmt{display:none}
+  header{text-align:left}
+  .card-rule{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1><span>Get Well Soon,</span><span>Boss</span></h1>
+    <p class="sub">Concerts &amp; films for <i>the road to recovery</i></p>
+    <div class="card-rule" aria-hidden="true"></div>
+  </header>
+
+  <div class="bar" role="region" aria-label="Browse">
+    <div class="group" role="group" aria-label="Show">
+      <button class="tbtn" data-view="all" aria-pressed="true">All</button>
+      <button class="tbtn" data-view="concert" aria-pressed="false">Concerts</button>
+      <button class="tbtn" data-view="film" aria-pressed="false">Films</button>
+    </div>
+    <div class="group">
+      <button class="tbtn" id="freeBtn" aria-pressed="false">Free to stream</button>
+      <input class="search" id="q" type="search" placeholder="Search" aria-label="Search titles">
+    </div>
+  </div>
+  <div class="tags">
+    <span class="lbl">Format</span><div class="row" id="tags-format" role="group" aria-label="Filter by format"></div>
+    <span class="lbl">Era</span><div class="row" id="tags-era" role="group" aria-label="Filter by era"></div>
+  </div>
+  <div class="status" id="status" aria-live="polite"></div>
+  <ul class="grid" id="grid"></ul>
+
+  <footer>
+    <span class="q">“Show a little faith, there’s magic in the night.”</span>
+    <span>Official &amp; licensed sources · More to come</span>
+  </footer>
+</div>
+
+<dialog id="detail" aria-labelledby="d-title">
+  <div class="d-img" id="d-img"></div>
+  <button class="close" id="d-close" aria-label="Close">×</button>
+  <div class="d-body">
+    <div class="d-kicker" id="d-kicker"></div>
+    <h2 class="d-title" id="d-title"></h2>
+    <div class="d-tags" id="d-tags"></div>
+    <p class="d-note" id="d-note"></p>
+    <div class="d-h">Where to watch</div>
+    <ul class="watch" id="d-watch"></ul>
+    <p class="caveat" id="d-caveat"></p>
+    <div class="nav"><button id="d-prev">← Previous</button><button id="d-next">Next →</button></div>
+  </div>
+</dialog>
+
+<script>
+const FORMATS = ["Full concert","Full album","Solo acoustic","Concert film","Documentary","Studio story","Fan film","Drama"];
+const ERA_CLASS = { "Darkness era": "era-darkness", "River era": "era-river", "Born to Run era": "era-btr", "Jersey Shore": "era-shore" };
+const $ = s => document.querySelector(s);
+const make = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+const ytId = url => { const m = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/.exec(url || ""); return m && m[1]; };
+const state = { view: "all", free: false, tag: null, q: "" };
+let ITEMS = [], visible = [];
+
+function thumbFor(it) {
+  if (it.thumb) return it.thumb;
+  const y = it.links.map(l => ytId(l.url)).find(Boolean);
+  return y ? `https://i.ytimg.com/vi/${y}/hqdefault.jpg` : "";
+}
+function placeholder(it) {
+  const p = make("div", "ph"); p.append(make("b", null, it.title), make("small", null, String(it.year))); return p;
+}
+function art(it, cls) {
+  const f = make("div", cls); const src = thumbFor(it);
+  if (src) {
+    const img = new Image(); img.alt = ""; img.loading = "lazy"; img.decoding = "async";
+    img.onerror = () => img.replaceWith(placeholder(it)); img.src = src; f.append(img);
+  } else f.append(placeholder(it));
+  return f;
+}
+const tagBtns = [];
+function addTag(row, t) {
+  const b = make("button", "tag", t); b.type = "button"; b.setAttribute("aria-pressed", "false");
+  b.onclick = () => { state.tag = state.tag === t ? null : t; tagBtns.forEach(x => x.setAttribute("aria-pressed", x.textContent === state.tag ? "true" : "false")); render(); };
+  tagBtns.push(b); row.append(b);
+}
+function render() {
+  visible = ITEMS.filter(it =>
+    (state.view === "all" || it.kind === state.view) && (!state.free || it.free) &&
+    (!state.tag || it.tags.includes(state.tag) || it.era === state.tag) &&
+    (!state.q || state.q.split(/\s+/).every(w => it.hay.includes(w))));
+  const g = $("#grid"); g.replaceChildren();
+  visible.forEach((it, i) => {
+    const li = make("li"); const b = make("button", "tile"); b.type = "button";
+    b.setAttribute("aria-label", `${it.title}, ${it.year}`);
+    const meta = make("div", "t-meta"); meta.append(make("span", null, String(it.year)));
+    if (it.free) meta.append(make("span", "free", "free"));
+    b.append(art(it, "frame"), meta, make("div", "t-title", it.title), (() => { const e = make("div", "t-era"); if (it.era) e.append(it.era); if (it.tags[0]) e.append(make("span", "fmt", (it.era ? " · " : "") + it.tags[0])); return e; })());
+    b.onclick = () => open(i); li.append(b); g.append(li);
+  });
+  if (!visible.length) g.append(make("li", "empty", "Nothing here yet — try clearing a filter"));
+  const parts = [state.tag, state.free && "free to stream"].filter(Boolean);
+  $("#status").textContent = `${visible.length} ${visible.length === 1 ? "title" : "titles"}` + (parts.length ? " · " + parts.join(" · ") : "");
+}
+const dlg = $("#detail"); let cur = -1, opener = null;
+function fill(i) {
+  cur = (i + visible.length) % visible.length; const it = visible[cur];
+  dlg.className = ERA_CLASS[it.era] || "";
+  const img = $("#d-img"); img.replaceChildren(...art(it, "x").childNodes); img.append(make("div", "d-over", it.title));
+  $("#d-kicker").textContent = [it.kind === "concert" ? "Concert" : "Film", it.year, it.runtime].filter(Boolean).join("  ·  ");
+  $("#d-title").textContent = it.title;
+  $("#d-tags").textContent = [it.era, ...it.tags].filter(Boolean).join("  ·  ");
+  $("#d-note").textContent = it.note;
+  const w = $("#d-watch"); w.replaceChildren();
+  it.links.forEach(l => {
+    const li = make("li"); const a = make("a"); a.href = l.url; a.target = "_blank"; a.rel = "noopener noreferrer";
+    a.append(make("span", "w-name", l.label), make("span", "w-acc" + (l.access === "Free" ? " free" : ""), l.access.toLowerCase()));
+    li.append(a); w.append(li);
+  });
+  (it.also || []).forEach(t => { const li = make("li"); li.append(make("div", "txt", t)); w.append(li); });
+  $("#d-caveat").textContent = it.caveat || ""; $("#d-caveat").hidden = !it.caveat;
+  dlg.scrollTop = 0;
+}
+function open(i) { opener = document.activeElement; fill(i); if (!dlg.open) dlg.showModal(); $("#d-close").focus(); }
+dlg.addEventListener("close", () => { if (opener) opener.focus(); });
+$("#d-close").onclick = () => dlg.close();
+$("#d-prev").onclick = () => fill(cur - 1);
+$("#d-next").onclick = () => fill(cur + 1);
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+dlg.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight") { fill(cur + 1); e.preventDefault(); }
+  if (e.key === "ArrowLeft") { fill(cur - 1); e.preventDefault(); }
+});
+document.querySelectorAll("[data-view]").forEach(b => b.onclick = () => {
+  state.view = b.dataset.view; document.querySelectorAll("[data-view]").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false")); render();
+});
+$("#freeBtn").onclick = e => { state.free = !state.free; e.currentTarget.setAttribute("aria-pressed", state.free); render(); };
+$("#q").addEventListener("input", e => { state.q = e.target.value.trim().toLowerCase(); render(); });
+
+fetch("videos.json").then(r => r.json()).then(data => {
+  ITEMS = data.map(it => ({ tags: [], links: [], also: [], ...it }));
+  ITEMS.forEach(it => {
+    it.free = it.links.some(l => l.access === "Free");
+    it.hay = [it.title, it.year, it.era, ...it.tags, it.note].join(" ").toLowerCase();
+  });
+  ITEMS.sort((a, b) => a.year - b.year || a.title.localeCompare(b.title));
+  const fmts = new Set(ITEMS.flatMap(it => it.tags)), eras = [];
+  ITEMS.forEach(it => { if (it.era && !eras.includes(it.era)) eras.push(it.era); });
+  [...FORMATS.filter(f => fmts.has(f)), ...[...fmts].filter(f => !FORMATS.includes(f))].forEach(t => addTag($("#tags-format"), t));
+  eras.forEach(t => addTag($("#tags-era"), t));
+  render();
+  if (location.hash.startsWith("#open=")) { const i = visible.findIndex(v => v.id === location.hash.slice(6)); if (i >= 0) open(i); }
+}).catch(() => { $("#status").textContent = "Couldn’t load the library."; });
+</script>
+</body>
+</html>
